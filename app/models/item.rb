@@ -2,7 +2,6 @@ class Item < ApplicationRecord
   has_many :purchases
   belongs_to :user
   has_one_attached :image
-  validate :image_presence
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -25,7 +24,7 @@ class Item < ApplicationRecord
     validates :days_id
     validates :price, numericality: { greater_than_or_equal_to: 300 }
     validates :price, numericality: { less_than_or_equal_to: 9_999_999 }
-    
+  end
     
   with_options numericality: { other_than: 1 } do
     validates :category_id
@@ -34,11 +33,8 @@ class Item < ApplicationRecord
     validates :days_id
     validates :prefecture_id
 
-  end# ジャンルの選択が「--」(id.1)の時は保存できないようにする
+  # ジャンルの選択が「--」(id.1)の時は保存できないようにする
   end
 
-  def image_presence
-    image.attached?
-    # これで画像がなければfalseになる
-  end
+ 
 end

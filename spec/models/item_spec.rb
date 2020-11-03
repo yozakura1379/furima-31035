@@ -11,10 +11,6 @@ RSpec.describe Item, type: :model do
         it 'name,image,price,about,genre_id,condition_id,delivery_fee_id,prefecture_id,days_idの値が存在すれば登録できること' do
           expect(@item).to be_valid
         end
-        it 'priceが300〜9999999なら登録できること' do
-          @item.price = 300
-          expect(@item).to be_valid
-        end
       end
 
       context '登録できないこと' do

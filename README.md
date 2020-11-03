@@ -25,8 +25,7 @@
 | Column                   | Type       | Options                        |
 | ------------------------ | ---------- | ------------------------------ |
 | name                     | string     | null: false                    |
-| image                    | text       | null: false                    |
-| prise                    | integer    | null: false                    |
+| price                    | integer    | null: false                    |
 | about                    | text       | null: false                    |
 | category_id              | integer    | null: false                    | 
 | status_id                | integer    | null: false                    |
