@@ -123,12 +123,12 @@
   <%# 商品一覧 %>
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
-    <%= link_to '新規投稿商品', item_path, class: "subtitle" %>
+    <%= link_to '新規投稿商品', items_path, class: "subtitle" %>
     <ul class='item-lists'>
     <% @items.each do |item| %>
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
       <li class='list'>
-        <%= link_to "item_path(item)" do %>
+        <%= link_to item_path(item) do %>
         <div class='item-img-content'>
           <%= image_tag "item-sample.png", class: "item-img" %>
 
@@ -137,12 +137,13 @@
           <%# あとで購入者記録の値にする %>
           <%#  present?で変数の値が存在するか、しないかによって処理が変わる%>
           <% else %>
-          <%# sold outが表示されてしまうので一時的に入れてます、 後から消します%>
+          <%# ↑　sold outが表示されてしまうので一時的に入れてます、 後から消します%>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
           <%# //商品が売れていればsold outを表示しましょう %>
          <% end %>
+         
         
         
         </div>
