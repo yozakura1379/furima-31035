@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index] #これでこのアクションにはログインが必要になる
 
   def index
     @items = Item.order(created_at: :DESC).includes(:user)
