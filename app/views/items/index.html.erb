@@ -123,7 +123,7 @@
   <%# 商品一覧 %>
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
-    <%= link_to '新規投稿商品', "item_path", class: "subtitle" %>
+    <%= link_to '新規投稿商品', item_path, class: "subtitle" %>
     <ul class='item-lists'>
     <% @items.each do |item| %>
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
@@ -148,10 +148,10 @@
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
-            <%= "#{item.name}" %>
+            <%= item.name %>
           </h3>
           <div class='item-price'>
-            <span><%= "#{item.price}" %>円<br><%= '(税込み)' %></span>
+            <span><%= item.price %>円<br><%= '(税込み)' %></span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
