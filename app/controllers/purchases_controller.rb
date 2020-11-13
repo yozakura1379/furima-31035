@@ -4,6 +4,8 @@ class PurchasesController < ApplicationController
 
   def index
     @purchase = UserPurchase.new
+    if current_user.id == @items.user.id || @items.user_purchase != nil
+      redirect_to root_path
   end
 
   def create
@@ -21,7 +23,6 @@ class PurchasesController < ApplicationController
 
   def purchase_params
     params.permit(:postal_code, :prefecture, :city, :house_number, :building_name, :tel, :token, :item_id).merge(user_id: current_user.id)
-    # params.require(:purchase).permit(:price).merge(token: params[:token])
   end
 
   def pay_item

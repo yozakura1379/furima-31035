@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :update, :destroy, :show]
 
   def index
-    # @items = Item.purchase(created_at: :DESC).includes(:user)
     @items = Item.all.order(created_at: :desc)
   end
 

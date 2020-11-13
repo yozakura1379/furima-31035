@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  has_many :purchases
+  has_one :purchases
   belongs_to :user
   has_one_attached :image
 
