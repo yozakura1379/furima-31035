@@ -11,6 +11,11 @@ RSpec.describe UserPurchase, type: :model do
         it 'postal_code,prefecture,city,house_number,telの値が存在すれば登録できること' do
           expect(@user_purchase).to be_valid
         end
+        it "building_nameが空でも登録できる" do
+          @form_object.building_name = ""
+          expect(@form_object).to be_valid
+        end
+
       end
 
       context '登録できないこと' do
