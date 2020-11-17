@@ -28,12 +28,14 @@
       </span>
     </div>
 
-    
-    <h3>気になる件数: <%= @item.likes.count %></h3>
-    <% if current_user.already_liked?(@item) %>
+    <% if user_signed_in? && @item.user_id == current_user.id %>
+      <% else %>
+      <h3>気になる件数: <%= @item.likes.count %></h3>
+      <% if current_user.already_liked?(@item) %>
         <%= button_to '気になるを取り消す', item_like_path(@item), method: :delete %>
-    <% else %>
-    <%= button_to '気になる', item_likes_path(@item) %>
+      <% else %>
+      <%= button_to '気になる', item_likes_path(@item) %>
+      <% end %>
     <% end %>
 
     <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
