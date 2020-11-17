@@ -6,6 +6,12 @@ class User < ApplicationRecord
 
   has_many :items
   has_many :purchases
+  has_many :likes, dependent: :destroy
+  has_many :liked_items, through: :likes, source: :item
+
+  def already_liked?(item)
+    self.likes.exists?(item_id: item.id)
+  end
 
   with_options presence: true do # ここでdoにすることで１つ１つやなくて済む
     validates :nickname
