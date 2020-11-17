@@ -1,11 +1,9 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show] #これでこのアクションにはログインが必要になる
+  before_action :authenticate_user!, except: [:index, :show] # これでこのアクションにはログインが必要になる
   before_action :set_item, only: [:edit, :update, :destroy, :show]
-  
-
 
   def index
-    @items = Item.order(created_at: :DESC).includes(:user)
+    @items = Item.all.order(created_at: :desc)
   end
 
   def new
@@ -22,15 +20,12 @@ class ItemsController < ApplicationController
   end
 
   def show
-    
   end
 
   def edit
-    
   end
 
   def destroy
-    
   end
 
   def update
@@ -47,8 +42,7 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :image, :price, :about, :category_id, :status_id, :delivery_fee_id, :days_id, :prefecture_id).merge(user_id: current_user.id)
   end
 
-
   def set_item
-  @item = Item.find(params[:id])
+    @item = Item.find(params[:id])
   end
 end
