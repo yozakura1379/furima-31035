@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show] # これでこのアクションにはログインが必要になる
   before_action :set_item, only: [:edit, :update, :destroy, :show]
+  before_action :prohibit_access, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -22,9 +23,15 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @like = Like.new
+    if @item.purchase.present?
+      redirect_to root_path
+    end
   end
 
   def edit
+    if user_signed_in? && @item.user_id == current_user.id 
+      redirect_to root_path
+    end
   end
 
   def destroy
@@ -50,4 +57,10 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
+  def prohibit_access
+    redirect_to action: :show if @item.user_id != current_user.id
+  end
+
 end
+
