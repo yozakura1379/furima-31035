@@ -37,4 +37,6 @@ class Item < ApplicationRecord
 
     # ジャンルの選択が「--」(id.1)の時は保存できないようにする
   end
+
+
 end

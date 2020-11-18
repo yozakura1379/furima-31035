@@ -130,7 +130,7 @@
       <li class='list'>
         <%= link_to item_path(item) do %> 
         <div class='item-img-content'>
-          <%= image_tag "item-sample.png", class: "item-img" %>
+          <%= image_tag item.image, class: "item-img" %>
           <h3>気になる件数: <%= item.likes.count %></h3>
           <%# 商品が売れていればsold outを表示しましょう %>
           <% if item.purchase.present?  %>

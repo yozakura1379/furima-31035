@@ -32,10 +32,12 @@
     <% if user_signed_in? && @item.user_id == current_user.id %>
       <% else %>
       <h3>気になる件数: <%= @item.likes.count %></h3>
-      <% if current_user.already_liked?(@item) %>
+      <%if current_user %>
+        <% if current_user.already_liked?(@item) %>
         <%= button_to '気になるを取り消す', item_like_path(@item), method: :delete %>
-      <% else %>
-      <%= button_to '気になる', item_likes_path(@item) %>
+        <% else %>
+        <%= button_to '気になる', item_likes_path(@item) %>
+        <% end %>
       <% end %>
     <% end %>
     
