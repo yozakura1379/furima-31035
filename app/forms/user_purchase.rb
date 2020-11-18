@@ -20,7 +20,7 @@ class UserPurchase
     validates :token
   end
 
-  validates :prefecture_id, { other_than: 1 }
+  # validates :prefecture_id, { other_than: 1 }
 
   def save
     purchase = Purchase.create(user_id: user_id, item_id: item_id)
