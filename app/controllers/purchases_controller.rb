@@ -1,6 +1,7 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
+  before_action :move_to_index
 
   def index
     @purchase = UserPurchase.new
@@ -37,5 +38,9 @@ class PurchasesController < ApplicationController
   def set_item
     @item = Item.find(params[:item_id])
     # :item_idでidではダメな理由はこのコントローラーはあくまでpurchaseなので別のモデルのidを持ってくる時はidの前にそのモデル名をつける必要がある
+  end
+
+  def move_to_index
+    redirect_to root_path unless @item.user_id != current_user.id
   end
 end
