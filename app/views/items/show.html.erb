@@ -28,6 +28,7 @@
       </span>
     </div>
 
+
     <% if user_signed_in? && @item.user_id == current_user.id %>
       <% else %>
       <h3>気になる件数: <%= @item.likes.count %></h3>
@@ -37,6 +38,7 @@
       <%= button_to '気になる', item_likes_path(@item) %>
       <% end %>
     <% end %>
+    
 
     <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
     <% if user_signed_in? && @item.user_id == current_user.id %>

@@ -6,6 +6,7 @@ class PurchasesController < ApplicationController
     @purchase = UserPurchase.new
     if current_user.id == @item.user.id || @item.user_purchase != nil
       redirect_to root_path
+    end
   end
 
   def create
